@@ -2,11 +2,11 @@ package bluenet.com.lab9_1
 
 import android.annotation.SuppressLint
 import android.os.AsyncTask
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Message
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
     private fun runThread() {
         object : Thread() {
             override fun run() {
-                while (rabprogress <= 100 && torprogress < 100) {
+                while (rabprogress < 100 && torprogress < 100) {
                     try {
                         Thread.sleep(100)
                     } catch (e: InterruptedException) {
@@ -64,7 +64,7 @@ class MainActivity : AppCompatActivity() {
     private fun runAsyncTask() {
         object : AsyncTask<Void, Int, Boolean>() {
             override fun doInBackground(vararg voids: Void): Boolean? {
-                while (torprogress <= 100 && rabprogress < 100) {
+                while (torprogress < 100 && rabprogress < 100) {
                     try {
                         Thread.sleep(100)
                     } catch (e: InterruptedException) {

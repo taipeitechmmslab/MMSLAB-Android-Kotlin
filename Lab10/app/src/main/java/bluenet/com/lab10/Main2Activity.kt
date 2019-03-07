@@ -1,7 +1,7 @@
 package bluenet.com.lab10
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 
 class Main2Activity : AppCompatActivity() {
 
