@@ -15,13 +15,17 @@ class Main2Activity : AppCompatActivity() {
 
         btn_send.setOnClickListener {
             when{
+                //判斷是否輸入姓名與電話
                 ed_name.length()<1 ->Toast.makeText(this,"請輸入姓名",Toast.LENGTH_SHORT).show()
                 ed_phone.length()<1 ->Toast.makeText(this,"請輸入電話",Toast.LENGTH_SHORT).show()
                 else->{
+                    //將姓名與電話放入Bundle
                     val b = Bundle()
                     b.putString("name", ed_name.text.toString())
                     b.putString("phone", ed_phone.text.toString())
+                    //透過setResult將資料回傳
                     setResult(Activity.RESULT_OK, Intent().putExtras(b))
+                    //結束Main2Activity
                     finish()
                 }
             }

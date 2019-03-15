@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+    //計數器狀態
     private var flag = false
 
     private val receiver: BroadcastReceiver = object : BroadcastReceiver() {
@@ -23,17 +24,16 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        val intentfilter = IntentFilter("MyMessage")
-        registerReceiver(receiver, intentfilter)
-
+        //註冊Receiver來接收有『MyMessage』識別字串的廣播
+        registerReceiver(receiver, IntentFilter("MyMessage"))
+        //取得Service狀態
         flag = MyService.flag
         btn_start.text = if(flag) "暫停" else "開始"
 
         btn_start.setOnClickListener {
             flag = !flag
             btn_start.text = if (flag) "暫停" else "開始"
-
+            //啟動Service
             startService(Intent(this, MyService::class.java).putExtra("flag", flag))
             Toast.makeText(this, if(flag)"計時開始" else "計時暫停", Toast.LENGTH_SHORT).show()
         }
@@ -41,6 +41,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
+        //註銷Receiver
         unregisterReceiver(receiver)
     }
 }

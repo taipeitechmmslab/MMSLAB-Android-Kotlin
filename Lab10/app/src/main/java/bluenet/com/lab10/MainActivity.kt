@@ -10,7 +10,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        //啟動Service並結束MainActivity
         btn_start.setOnClickListener {
             startService(Intent(this, MyService::class.java))
             Toast.makeText(this, "啟動Service", Toast.LENGTH_SHORT)

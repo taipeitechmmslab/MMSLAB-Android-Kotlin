@@ -8,53 +8,67 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 
 class ThirdFragment : Fragment() {
+    companion object {
+        const val TAG = "ThirdFragment"
+    }
+    
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.e("ThirdFragment","onCreate")
+        //初始化頁面
+        Log.e(TAG,"onCreate")
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        Log.e("ThirdFragment","onCreateView")
+        //連結畫面
+        Log.e(TAG,"onCreateView")
         return inflater.inflate(R.layout.fragment_thrid, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        Log.e("ThirdFragment","onActivityCreated")
+        //連結Fragment與Activity
+        Log.e(TAG,"onActivityCreated")
     }
 
     override fun onStart() {
         super.onStart()
-        Log.e("ThirdFragment","onStart")
+        //頁面可見
+        Log.e(TAG,"onStart")
     }
 
     override fun onResume() {
         super.onResume()
-        Log.e("ThirdFragment","onResume")
+        //頁面與使用者開始互動
+        Log.e(TAG,"onResume")
     }
 
     override fun onPause() {
         super.onPause()
-        Log.e("ThirdFragment","onPause")
+        //離開頁面
+        Log.e(TAG,"onPause")
     }
 
     override fun onStop() {
         super.onStop()
-        Log.e("ThirdFragment","onStop")
+        //頁面不可見
+        Log.e(TAG,"onStop")
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        Log.e("ThirdFragment","onDestroyView")
+        //移除畫面
+        Log.e(TAG,"onDestroyView")
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        Log.e("ThirdFragment","onDestroy")
+        //回收頁面
+        Log.e(TAG,"onDestroy")
     }
 
     override fun onDetach() {
         super.onDetach()
-        Log.e("ThirdFragment","onDetach")
+        //移除Fragment
+        Log.e(TAG,"onDetach")
     }
 }

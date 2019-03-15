@@ -15,6 +15,7 @@ class MainActivity : AppCompatActivity() {
 
         btn_calculate.setOnClickListener {
             when{
+                //判斷使用者是否輸入身高與體重
                 ed_height.length()<1 ->Toast.makeText(this,"請輸入身高",
                     Toast.LENGTH_SHORT).show()
                 ed_weight.length()<1 ->Toast.makeText(this,"請輸入體重",
@@ -29,11 +30,13 @@ class MainActivity : AppCompatActivity() {
         object : AsyncTask<Void, Int, Boolean>() {
             override fun onPreExecute() {
                 super.onPreExecute()
+                //初始化『標準體重』與『體脂肪』
                 tv_weight.text = "標準體重\n無"
                 tv_bmi.text = "體脂肪\n無"
-
+                //初始化進度條
                 progressBar2.progress = 0
                 tv_progress.text = "0%"
+                //顯示進度條
                 ll_progress.visibility = View.VISIBLE
             }
 
@@ -41,8 +44,11 @@ class MainActivity : AppCompatActivity() {
                 var progress = 0
                 while (progress <= 100) {
                     try {
+                        //延遲50ms
                         Thread.sleep(50)
+                        //更新進度
                         publishProgress(progress)
+                        //計數器加一
                         progress++
                     } catch (e: InterruptedException) {
                         e.printStackTrace()
@@ -54,18 +60,21 @@ class MainActivity : AppCompatActivity() {
             override fun onProgressUpdate(vararg values: Int?) {
                 super.onProgressUpdate(*values)
                 values[0]?.let {
+                    //顯示計數器數值
                     progressBar2.progress = it
                     tv_progress.text = "$it%"
                 }
             }
 
             override fun onPostExecute(status: Boolean?) {
+                //隱藏進度條
                 ll_progress.visibility = View.GONE
-
+                //讀取身高與體重
                 val cal_height = ed_height.text.toString().toDouble()
                 val cal_weight = ed_weight.text.toString().toDouble()
                 val cal_standweight: Double
                 val cal_bodyfat: Double
+                //判斷性別，跳用各自的計算公式
                 if (btn_boy.isChecked) {
                     cal_standweight = (cal_height - 80) * 0.7
                     cal_bodyfat = (cal_weight - 0.88 * cal_standweight) / cal_weight * 100
@@ -73,10 +82,10 @@ class MainActivity : AppCompatActivity() {
                     cal_standweight = (cal_height - 70) * 0.6
                     cal_bodyfat = (cal_weight - 0.82 * cal_standweight) / cal_weight * 100
                 }
-
+                //顯示計算結果
                 tv_weight.text = "標準體重 \n${String.format("%.2f", cal_standweight)}"
                 tv_bmi.text = "體脂肪 \n${String.format("%.2f", cal_bodyfat)}"
             }
-        }.execute()
+        }.execute() //執行AsyncTask
     }
 }

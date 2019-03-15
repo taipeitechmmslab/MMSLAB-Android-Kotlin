@@ -8,19 +8,21 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        //『猜拳』按鈕點擊監聽
         btn_mora.setOnClickListener {
+            //判斷使用者是否輸入姓名
             if(ed_name.length()<1)
                 tv_text.text = "請輸入玩家姓名"
             else{
+                //顯示使用者姓名、出拳
                 tv_name.text = "名字\n${ed_name.text}"
                 tv_mmora.text = "我方出拳\n${if(btn_scissor.isChecked) "剪刀"
                 else if(btn_stone.isChecked) "石頭" else "布"}"
-
+                //使用亂數產生電腦出拳
                 val computer = (Math.random()*3).toInt()
                 tv_cmora.text = "電腦出拳\n${if(computer==0) "剪刀"
                 else if(computer==1) "石頭" else "布"}"
-
+                //判斷勝負
                 when{
                     btn_scissor.isChecked && computer==2 || btn_stone.isChecked && computer==0 ||
                             btn_paper.isChecked && computer==1 ->{
