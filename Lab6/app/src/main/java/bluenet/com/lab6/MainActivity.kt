@@ -17,8 +17,7 @@ class MainActivity : AppCompatActivity() {
         val array = arrayOf("項目1", "項目2", "項目3", "項目4", "項目5")
 
         btn_toast.setOnClickListener {
-            //使用預設Toast顯示文字訊息
-            Toast.makeText(this,"預設Toast", Toast.LENGTH_SHORT).show()
+            showToast("預設Toast")
         }
 
         btn_custom.setOnClickListener {
@@ -40,13 +39,13 @@ class MainActivity : AppCompatActivity() {
                 .setTitle("按鍵式對話框") //顯示標題
                 .setMessage("對話框內容")    //顯示文字內容
                 .setNeutralButton("取消") { dialog, which ->
-                    Toast.makeText(this,"取消", Toast.LENGTH_SHORT).show()
+                    showToast("取消")
                 }
                 .setNegativeButton("拒絕") { dialog, which ->
-                    Toast.makeText(this,"拒絕", Toast.LENGTH_SHORT).show()
+                    showToast("拒絕")
                 }
                 .setPositiveButton("確定") { dialog, which ->
-                    Toast.makeText(this,"確定", Toast.LENGTH_SHORT).show()
+                    showToast("確定")
                 }.show()    //顯示Dialog
         }
 
@@ -55,7 +54,7 @@ class MainActivity : AppCompatActivity() {
             AlertDialog.Builder(this)
                 .setTitle("列表式對話框") //顯示標題
                 .setItems(array) { dialogInterface, i ->
-                    Toast.makeText(this,"你選的是" + array[i], Toast.LENGTH_SHORT).show()
+                    showToast("你選的是" + array[i])
                 }.show()    //顯示Dialog
         }
 
@@ -69,8 +68,12 @@ class MainActivity : AppCompatActivity() {
                     position = i
                 }
                 .setPositiveButton("確定") { dialog, which ->
-                    Toast.makeText(this,"你選的是" + array[position], Toast.LENGTH_SHORT).show()
+                    showToast("你選的是" + array[position])
                 }.show()    //顯示Dialog
         }
+    }
+    //使用預設Toast顯示文字訊息
+    private fun showToast(text: String){
+        Toast.makeText(this, text, Toast.LENGTH_SHORT).show()
     }
 }
