@@ -5,6 +5,10 @@
 如內容有誤或有其他建言可透過『讀者回函』或是聯繫[『博碩文化 DrMaster』](https://www.facebook.com/DrMasterTW/)Facebook粉絲團
 
 近期更動：
+
 03/06  使用AndroidX取代android.support元件庫
+
 03/14  在範例程式加入註解說明
+
 03/16  輕輕的優化Toast寫法
+
