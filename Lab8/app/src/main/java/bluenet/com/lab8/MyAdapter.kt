@@ -11,9 +11,9 @@ class MyAdapter(private val contacts:ArrayList<Contact>) : RecyclerView.Adapter<
     //ViewHolder類別，用來緩存畫面中的元件
     class ViewHolder(v: View):RecyclerView.ViewHolder(v){
         //宣告並連結畫面元件
-        val tv_name = v.findViewById<TextView>(R.id.tv_name)
-        val tv_phone = v.findViewById<TextView>(R.id.tv_phone)
-        val img_delete = v.findViewById<ImageView>(R.id.img_delete)
+        val tv_name: TextView  = v.findViewById(R.id.tv_name)
+        val tv_phone: TextView = v.findViewById(R.id.tv_phone)
+        val img_delete: ImageView = v.findViewById(R.id.img_delete)
     }
     //建立ViewHolder並連結畫面
     override fun onCreateViewHolder(viewGroup: ViewGroup, position: Int): ViewHolder {

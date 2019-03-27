@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity() {
                 //發送成功執行此方法
                 override fun onResponse(call: Call, response: Response) {
                     response.body()?.let {
-                        //用response.body()?.string()取得Json字串，並使用廣播發送
+                        //取得用response的回傳結果（Json字串），並使用廣播發送
                         sendBroadcast(Intent("MyMessage").putExtra("json", it.string()))
                     }
                 }

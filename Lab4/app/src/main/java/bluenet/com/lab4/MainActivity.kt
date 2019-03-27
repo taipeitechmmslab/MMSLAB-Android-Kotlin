@@ -11,14 +11,13 @@ class MainActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         //判斷Bundle是否不為空
-        data?.extras?.let {
-            //驗證請求對象與回傳狀態
-            if(requestCode==1 && resultCode== Activity.RESULT_OK){
-                //讀取Bundle中的資料
-                tv_meal.text = "飲料: ${it.getString("drink")}\n\n" +
-                        "甜度: ${it.getString("sugar")}\n\n" +
-                        "冰塊: ${it.getString("ice")}"
-            }
+        val b = data?.extras?: return
+        //驗證請求對象與回傳狀態
+        if(requestCode==1 && resultCode== Activity.RESULT_OK){
+            //讀取Bundle中的資料
+            tv_meal.text = "飲料: ${b.getString("drink")}\n\n" +
+                    "甜度: ${b.getString("sugar")}\n\n" +
+                    "冰塊: ${b.getString("ice")}"
         }
     }
 

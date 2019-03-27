@@ -12,3 +12,4 @@
 
 03/16  輕輕的優化Toast寫法
 
+03/27  輕輕的優化Bundle判斷式與ViewHoler寫法

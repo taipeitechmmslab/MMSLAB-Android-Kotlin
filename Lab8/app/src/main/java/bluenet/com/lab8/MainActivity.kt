@@ -15,14 +15,14 @@ class MainActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        data?.extras?.let {
-            //驗證發出對象與回傳狀態
-            if(requestCode==1 && resultCode== Activity.RESULT_OK){
-                //建立Contact物件，讀取Bundle中的資料
-                contacts.add(Contact(it.getString("name"), it.getString("phone")))
-                //更新列表資料
-                adapter.notifyDataSetChanged()
-            }
+        //判斷Bundle是否不為空
+        val b = data?.extras?: return
+        //驗證發出對象與回傳狀態
+        if(requestCode==1 && resultCode== Activity.RESULT_OK){
+            //建立Contact物件，讀取Bundle中的資料
+            contacts.add(Contact(b.getString("name"), b.getString("phone")))
+            //更新列表資料
+            adapter.notifyDataSetChanged()
         }
     }
 

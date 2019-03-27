@@ -9,9 +9,9 @@ import android.widget.TextView
 class MyAdapter2 constructor(private val layout: Int, private val data: ArrayList<Item>)
     : BaseAdapter() {
     //ViewHolder類別，用來緩存畫面中的元件
-    private class ViewHolder {
-        lateinit var img_photo: ImageView
-        lateinit var tv_name: TextView
+    private class ViewHolder(v: View) {
+        val img_photo: ImageView = v.findViewById(R.id.img_photo)
+        val tv_name: TextView = v.findViewById(R.id.tv_name)
     }
     //回傳項目筆數
     override fun getCount() = data.size
@@ -28,12 +28,9 @@ class MyAdapter2 constructor(private val layout: Int, private val data: ArrayLis
             //建立畫面
             view = View.inflate(parent?.context, layout, null)
             //建立ViewHolder
-            holder = ViewHolder()
+            holder = ViewHolder(view)
             //將ViewHolder作為View的Tag
             view.tag = holder
-            //連結畫面元件
-            holder.img_photo = view.findViewById(R.id.img_photo)
-            holder.tv_name = view.findViewById(R.id.tv_name)
         }else{
             //從Tag取得ViewHolder
             holder = convertView.tag as ViewHolder
