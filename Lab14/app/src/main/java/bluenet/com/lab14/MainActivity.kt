@@ -16,22 +16,24 @@ import java.io.IOException
 class MainActivity : AppCompatActivity() {
     private val receiver: BroadcastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
-            intent.extras?.getString("json")?.let {
-                //解析Intent取得JSON字串，把json物件以Data格式做轉換
-                val data = Gson().fromJson(it, Data::class.java)
-                val items = arrayOfNulls<String>(data.result.results.size)
-                //建立一個字串陣列，用於提取『站名』與『目的地』資訊
-                for(i in 0 until data.result.results.size)
-                    items[i] = "\n列車即將進入 :${data.result.results[i].Station}" +
-                            "\n列車行駛目的地 :${data.result.results[i].Destination}"
-                //使用者介面的操作必須在UI Thread上執行
-                this@MainActivity.runOnUiThread {
-                    //使用Dialog呈現結果
-                    AlertDialog.Builder(this@MainActivity)
-                        .setTitle("台北捷運列車到站站名")
-                        .setItems(items,null)
-                        .show()
-                }
+            //判斷回傳結果是否為空
+            val json = intent.extras?.getString("json")?: return
+            //解析Intent取得JSON字串，把json物件以Data格式做轉換
+            val data = Gson().fromJson(json, Data::class.java)
+            val items = arrayOfNulls<String>(data.result.results.size)
+            //建立一個字串陣列，用於提取『站名』與『目的地』資訊
+            for(i in 0 until data.result.results.size)
+                items[i] = "\n列車即將進入 :${data.result.results[i].Station}" +
+                        "\n列車行駛目的地 :${data.result.results[i].Destination}"
+            //使用者介面的操作必須在UI Thread上執行
+            this@MainActivity.runOnUiThread {
+                //使用Dialog呈現結果
+                AlertDialog.Builder(this@MainActivity)
+                    .setTitle("台北捷運列車到站站名")
+                    .setItems(items) { dialogInterface, i ->
+                        dialogInterface.dismiss()
+                    }
+                    .show()
             }
         }
     }
@@ -51,10 +53,10 @@ class MainActivity : AppCompatActivity() {
             OkHttpClient().newCall(req).enqueue(object: Callback {
                 //發送成功執行此方法
                 override fun onResponse(call: Call, response: Response) {
-                    response.body()?.let {
-                        //取得用response的回傳結果（Json字串），並使用廣播發送
-                        sendBroadcast(Intent("MyMessage").putExtra("json", it.string()))
-                    }
+                    //判斷回傳結果是否為空
+                    val json = response.body()?.string()?:return
+                    //取得用response的回傳結果（Json字串），並使用廣播發送
+                    sendBroadcast(Intent("MyMessage").putExtra("json", json))
                 }
                 //發送失敗執行此方法
                 override fun onFailure(call: Call, e: IOException) {

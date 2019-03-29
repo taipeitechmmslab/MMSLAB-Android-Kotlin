@@ -4,12 +4,12 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
-
     private lateinit var adapter : MyAdapter
     private val contacts =  ArrayList<Contact>()
 
@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         val b = data?.extras?: return
         //驗證發出對象與回傳狀態
         if(requestCode==1 && resultCode== Activity.RESULT_OK){
-            //建立Contact物件，讀取Bundle中的資料
+            //新增聯絡人
             contacts.add(Contact(b.getString("name"), b.getString("phone")))
             //更新列表資料
             adapter.notifyDataSetChanged()
@@ -30,10 +30,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         //建立LinearLayoutManager物件
-        val linearLayoutManager = LinearLayoutManager(this)
+        val layoutManager = LinearLayoutManager(this)
+        //建立GridLayoutManager物件
+        //val layoutManager = GridLayoutManager(this, 3)
         //設定垂直顯示
-        linearLayoutManager.orientation = RecyclerView.VERTICAL
-        recyclerView.layoutManager = linearLayoutManager
+        layoutManager.orientation = RecyclerView.VERTICAL
+        recyclerView.layoutManager = layoutManager
 
         adapter = MyAdapter(contacts)
         //連結Adapter

@@ -13,7 +13,7 @@ class MainActivity : AppCompatActivity() {
         //啟動Service並結束MainActivity
         btn_start.setOnClickListener {
             startService(Intent(this, MyService::class.java))
-            Toast.makeText(this, "啟動Service", Toast.LENGTH_SHORT)
+            Toast.makeText(this, "啟動Service", Toast.LENGTH_SHORT).show()
             finish()
         }
     }

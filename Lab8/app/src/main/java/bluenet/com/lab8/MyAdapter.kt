@@ -28,7 +28,9 @@ class MyAdapter(private val contacts:ArrayList<Contact>) : RecyclerView.Adapter<
         holder.tv_phone.text = contacts[position].phone
 
         holder.img_delete.setOnClickListener {
+            //移除聯絡人
             contacts.removeAt(position)
+            //更新列表資料
             notifyDataSetChanged()
         }
     }

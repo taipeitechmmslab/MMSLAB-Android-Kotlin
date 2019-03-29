@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
-    //建立兩個計數佔存
+    //建立兩個計數暫存
     private var rabprogress = 0
     private var torprogress = 0
 
@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
         btn_start.setOnClickListener {
             //關閉Button
             btn_start.isEnabled = false
-            //初始化佔存與SeekBar
+            //初始化暫存與SeekBar
             rabprogress = 0
             torprogress = 0
             seekBar.progress = 0
@@ -36,10 +36,10 @@ class MainActivity : AppCompatActivity() {
         object : Thread() {
             override fun run() {
                 //重複執行到計數器不小於100為止
-                while (rabprogress < 100 && torprogress < 100) {
+                while (rabprogress < 100 && torprogress < 100)
                     try {
                         //延遲100ms
-                        Thread.sleep(100)
+                        sleep(100)
                         //隨機增加計數器0~2的值
                         rabprogress += (Math.random() * 3).toInt()
                         //建立Message物件
@@ -51,7 +51,6 @@ class MainActivity : AppCompatActivity() {
                     } catch (e: InterruptedException) {
                         e.printStackTrace()
                     }
-                }
             }
         }.start()   //執行Thread
     }
@@ -76,7 +75,7 @@ class MainActivity : AppCompatActivity() {
         object : AsyncTask<Void, Int, Boolean>() {
             override fun doInBackground(vararg voids: Void): Boolean? {
                 //重複執行到計數器不小於100為止
-                while (torprogress < 100 && rabprogress < 100) {
+                while (torprogress < 100 && rabprogress < 100)
                     try {
                         //延遲100ms
                         Thread.sleep(100)
@@ -87,7 +86,7 @@ class MainActivity : AppCompatActivity() {
                     } catch (e: InterruptedException) {
                         e.printStackTrace()
                     }
-                }
+
                 return true
             }
 

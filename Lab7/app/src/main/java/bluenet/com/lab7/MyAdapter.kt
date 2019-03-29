@@ -14,9 +14,9 @@ class MyAdapter constructor(private val layout: Int, private val data: ArrayList
     //回傳某筆項目Id
     override fun getItemId(position: Int) = 0L
     //取得畫面
-    override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
+    override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         //建立畫面
-        val view = View.inflate(parent?.context, layout, null)
+        val view = View.inflate(parent.context, layout, null)
         //根據position顯示圖片與名稱
         view.img_photo.setImageResource(data[position].photo)
         view.tv_name.text = data[position].name

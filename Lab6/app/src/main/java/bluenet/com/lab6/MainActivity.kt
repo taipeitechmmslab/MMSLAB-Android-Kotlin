@@ -73,7 +73,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
     //使用預設Toast顯示文字訊息
-    private fun showToast(text: String){
+    private fun showToast(text: String) =
         Toast.makeText(this, text, Toast.LENGTH_SHORT).show()
-    }
 }

@@ -89,9 +89,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun showToast(text: String){
+    private fun showToast(text: String) =
         Toast.makeText(this,text, Toast.LENGTH_LONG).show()
-    }
     //清空輸入欄
     private fun cleanEditText(){
         ed_book.setText("")

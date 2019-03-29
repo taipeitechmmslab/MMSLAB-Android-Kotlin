@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.os.AsyncTask
 import android.os.Bundle
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
@@ -20,7 +21,12 @@ class MainActivity : AppCompatActivity() {
                     Toast.LENGTH_SHORT).show()
                 ed_weight.length()<1 ->Toast.makeText(this,"請輸入體重",
                     Toast.LENGTH_SHORT).show()
-                else-> runAsyncTask()
+                else-> {
+                    runAsyncTask()
+                    //隱藏鍵盤
+                    val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+                    imm.hideSoftInputFromWindow(it.windowToken,0)
+                }
             }
         }
     }
@@ -42,7 +48,7 @@ class MainActivity : AppCompatActivity() {
 
             override fun doInBackground(vararg voids: Void): Boolean? {
                 var progress = 0
-                while (progress <= 100) {
+                while (progress < 100)
                     try {
                         //延遲50ms
                         Thread.sleep(50)
@@ -53,7 +59,7 @@ class MainActivity : AppCompatActivity() {
                     } catch (e: InterruptedException) {
                         e.printStackTrace()
                     }
-                }
+
                 return true
             }
 

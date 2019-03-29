@@ -10,10 +10,10 @@ class MyService : Service() {
         //計數器狀態
         var flag: Boolean = false
     }
-    //計數器數值
-    private var h = 0
-    private var m = 0
-    private var s = 0
+    //計數器數值（時、分、秒）
+    private var hour = 0
+    private var minute = 0
+    private var second = 0
 
     override fun onBind(intent: Intent): IBinder {
         TODO("Return the communication channel to the service.")
@@ -32,24 +32,24 @@ class MyService : Service() {
                         e.printStackTrace()
                     }
                     //計數器加一
-                    s++
+                    second++
                     //秒數大於60進位
-                    if (s >= 60) {
-                        s = 0
-                        m++
+                    if (second >= 60) {
+                        second = 0
+                        minute++
                         //分鐘數大於60進位
-                        if (m >= 60) {
-                            m = 0
-                            h++
+                        if (minute >= 60) {
+                            minute = 0
+                            hour++
                         }
                     }
                     //發送帶有『MyMessage』識別字串的廣播
                     val intent = Intent("MyMessage")
                     //將時間放入Bundle
                     val bundle = Bundle()
-                    bundle.putInt("H", h)
-                    bundle.putInt("M", m)
-                    bundle.putInt("S", s)
+                    bundle.putInt("H", hour)
+                    bundle.putInt("M", minute)
+                    bundle.putInt("S", second)
                     //發送廣播
                     sendBroadcast(intent.putExtras(bundle))
                 }

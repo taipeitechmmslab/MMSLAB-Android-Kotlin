@@ -20,13 +20,13 @@ class MyAdapter2 constructor(private val layout: Int, private val data: ArrayLis
     //回傳某筆項目Id
     override fun getItemId(position: Int) = 0L
     //取得畫面
-    override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
+    override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         val view: View  //由於convertView無法賦值，必須額外建立一個View物件
         val holder: ViewHolder  //宣告ViewHolder
 
         if(convertView==null){
             //建立畫面
-            view = View.inflate(parent?.context, layout, null)
+            view = View.inflate(parent.context, layout, null)
             //建立ViewHolder
             holder = ViewHolder(view)
             //將ViewHolder作為View的Tag
