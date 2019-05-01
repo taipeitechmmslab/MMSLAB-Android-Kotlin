@@ -4,11 +4,10 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
-class MySQLiteOpenHelper (context: Context, name: String = database, factory: SQLiteDatabase.CursorFactory? = null,
-                          version: Int = v): SQLiteOpenHelper(context, name, factory, version) {
+class MySQLiteOpenHelper (context: Context): SQLiteOpenHelper(context, name, null, version) {
     companion object {
-        private const val database = "mdatabase.db" //資料庫名稱
-        private const val v = 1 //資料庫版本
+        private const val name = "mdatabase.db" //資料庫名稱
+        private const val version = 1 //資料庫版本
     }
 
     override fun onCreate(db: SQLiteDatabase) {

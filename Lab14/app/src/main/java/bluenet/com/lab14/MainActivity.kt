@@ -53,10 +53,17 @@ class MainActivity : AppCompatActivity() {
             OkHttpClient().newCall(req).enqueue(object: Callback {
                 //發送成功執行此方法
                 override fun onResponse(call: Call, response: Response) {
-                    //判斷回傳結果是否為空
-                    val json = response.body()?.string()?:return
-                    //取得用response的回傳結果（Json字串），並使用廣播發送
-                    sendBroadcast(Intent("MyMessage").putExtra("json", json))
+                    //判斷伺服器回傳狀態
+                    when{
+                        response.code()==200 ->{
+                            //判斷回傳是否為空
+                            val json = response.body()?.string()?:return
+                            //取得用response的回傳結果（Json字串），並使用廣播發送
+                            sendBroadcast(Intent("MyMessage").putExtra("json", json))
+                        }
+                        !response.isSuccessful ->Log.e("伺服器錯誤","${response.code()} ${response.message()}")
+                        else ->Log.e("其他錯誤","${response.code()} ${response.message()}")
+                    }
                 }
                 //發送失敗執行此方法
                 override fun onFailure(call: Call, e: IOException) {

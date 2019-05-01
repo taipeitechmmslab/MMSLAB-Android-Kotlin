@@ -12,12 +12,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         //從R讀取圖片資源
-        val array = resources.obtainTypedArray(R.array.resourceList)
+        val imgArray = resources.obtainTypedArray(R.array.imgArray)
+        val nameArray = resources.getStringArray(R.array.nameArray)
         //建立項目物件，放入圖片資源與名稱
-        for(i in 0 until array.length())
-            items.add(Item(array.getResourceId(i,0),"水果${i+1}"))
+        for(i in 0 until imgArray.length())
+            items.add(Item(imgArray.getResourceId(i,0), nameArray[i]))
         //回收TypedArray
-        array.recycle()
+        imgArray.recycle()
         //連結Adapter，設定layout為adapter_horizontal
         spinner.adapter = MyAdapter(R.layout.adapter_horizontal, items)
         //設定橫向顯示的項目筆數
