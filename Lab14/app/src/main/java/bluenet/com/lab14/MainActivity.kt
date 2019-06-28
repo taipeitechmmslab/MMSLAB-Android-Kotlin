@@ -80,13 +80,13 @@ class MainActivity : AppCompatActivity() {
     }
 }
 
-class Data{
-    lateinit var result:Result
+class Data {
+    lateinit var result: Result
 
-    class Result{
+    class Result {
         lateinit var results : Array<Results>
 
-        class Results{
+        class Results {
             val Station = ""    //站名
             val Destination = ""    //目的地
         }

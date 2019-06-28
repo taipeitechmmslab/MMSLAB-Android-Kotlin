@@ -27,7 +27,7 @@ class MyService : Service() {
                 while (flag) {
                     try {
                         //延遲1s
-                        Thread.sleep(1000)
+                        sleep(1000)
                     } catch (e: InterruptedException) {
                         e.printStackTrace()
                     }
@@ -56,6 +56,6 @@ class MyService : Service() {
             }
         }.start()
         //自動重啟，但不會保留Intent
-        return Service.START_STICKY
+        return START_STICKY
     }
 }

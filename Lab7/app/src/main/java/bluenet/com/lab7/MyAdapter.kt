@@ -1,5 +1,6 @@
 package bluenet.com.lab7
 
+import android.annotation.SuppressLint
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
@@ -14,6 +15,7 @@ class MyAdapter constructor(private val layout: Int, private val data: ArrayList
     //回傳某筆項目Id
     override fun getItemId(position: Int) = 0L
     //取得畫面
+    @SuppressLint("ViewHolder")
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         //建立畫面
         val view = View.inflate(parent.context, layout, null)

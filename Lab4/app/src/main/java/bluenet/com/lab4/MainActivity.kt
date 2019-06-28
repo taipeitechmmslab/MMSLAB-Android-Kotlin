@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         //判斷Bundle是否不為空
@@ -15,9 +14,8 @@ class MainActivity : AppCompatActivity() {
         //驗證請求對象與回傳狀態
         if(requestCode==1 && resultCode== Activity.RESULT_OK){
             //讀取Bundle中的資料
-            tv_meal.text = "飲料: ${b.getString("drink")}\n\n" +
-                    "甜度: ${b.getString("sugar")}\n\n" +
-                    "冰塊: ${b.getString("ice")}"
+            tv_meal.text = String.format("飲料: %s\n\n甜度: %s\n\n冰塊: %s\n\n",
+                b.getString("drink"), b.getString("sugar"), b.getString("ice"))
         }
     }
 

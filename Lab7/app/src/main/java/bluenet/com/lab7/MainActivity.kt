@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
         gridview.adapter = MyAdapter(R.layout.adapter_vertical, items)
         //gridview.adapter = MyAdapter2(R.layout.adapter_vertical, items)
         //連結Adapter，設定layout為simple_list_item_1與字串陣列
-        listView.adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,
+        listView.adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1,
             arrayListOf("項目1","項目2","項目3","項目4","項目5","項目6","項目7","項目8","項目9"))
     }
 }

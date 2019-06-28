@@ -19,3 +19,5 @@
 05/01  更新專案Kotlin與Gradle版本，優化Lab7與Lab14。
 
 05/11  更新Lab15 Firebase library版本。
+
+06/28 輕輕的優化範例專案並更新專案Kotlin與Gradle版本。

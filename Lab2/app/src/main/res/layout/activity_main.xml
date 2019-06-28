@@ -63,12 +63,12 @@
     </RadioGroup>
 
     <Button
-        android:id="@+id/btn_mora"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="猜拳"
-        app:layout_constraintStart_toStartOf="@+id/radioGroup"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+            android:id="@+id/btn_mora"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="猜拳"
+            app:layout_constraintStart_toStartOf="@+id/radioGroup"
+            app:layout_constraintTop_toBottomOf="@+id/radioGroup" android:layout_marginTop="16dp"/>
 
     <TextView
         android:id="@+id/tv_name"

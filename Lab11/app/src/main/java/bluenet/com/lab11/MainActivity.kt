@@ -16,7 +16,8 @@ class MainActivity : AppCompatActivity() {
     private val receiver: BroadcastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
             val b = intent.extras?: return
-            tv_clock?.text = "%02d:%02d:%02d".format(b.getInt("H"), b.getInt("M"), b.getInt("S"))
+            tv_clock?.text =  String.format("%02d:%02d:%02d",
+                b.getInt("H"), b.getInt("M"), b.getInt("S"))
         }
     }
 

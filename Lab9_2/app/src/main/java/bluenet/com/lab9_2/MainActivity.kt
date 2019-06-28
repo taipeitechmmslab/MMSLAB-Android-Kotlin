@@ -68,7 +68,7 @@ class MainActivity : AppCompatActivity() {
                 values[0]?.let {
                     //顯示計數器數值
                     progressBar2.progress = it
-                    tv_progress.text = "$it%"
+                    tv_progress.text = String.format("%d%%", it)
                 }
             }
 
@@ -89,8 +89,8 @@ class MainActivity : AppCompatActivity() {
                     cal_bodyfat = (cal_weight - 0.82 * cal_standweight) / cal_weight * 100
                 }
                 //顯示計算結果
-                tv_weight.text = "標準體重 \n${String.format("%.2f", cal_standweight)}"
-                tv_bmi.text = "體脂肪 \n${String.format("%.2f", cal_bodyfat)}"
+                tv_weight.text = String.format("標準體重 \n%.2f", cal_standweight)
+                tv_bmi.text = String.format("體脂肪 \n%.2f", cal_bodyfat)
             }
         }.execute() //執行AsyncTask
     }

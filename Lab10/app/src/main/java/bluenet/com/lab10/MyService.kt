@@ -21,7 +21,7 @@ class MyService : Service() {
     override fun onStartCommand(intent: Intent, flags: Int, startid: Int): Int {
         super.onStartCommand(intent, flags, startid)
         //結束後不再重啟
-        return Service.START_NOT_STICKY
+        return START_NOT_STICKY
     }
 
     override fun onBind(intent: Intent): IBinder? {
