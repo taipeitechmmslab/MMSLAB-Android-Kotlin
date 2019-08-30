@@ -9,14 +9,14 @@ class MyMessagingService : FirebaseMessagingService(){
         const val TAG = "MessagingService"
     }
     //APP取得新token時呼叫，通常是在第一次啟動APP時會自動與Firebase註冊
-    override fun onNewToken(token: String?) {
+    override fun onNewToken(token: String) {
         super.onNewToken(token)
         Log.e(TAG, "onNewToken  $token")
     }
     //APP在前景時收到Notification Message會呼叫
     override fun onMessageReceived(msg: RemoteMessage) {
         super.onMessageReceived(msg)
-        Log.e(TAG, msg.from)
+        Log.e(TAG, msg.from ?: "")
         //透過for loop將msg夾帶的資料輸出
         for(entry in msg.data.entries)
             Log.e("message","${entry.key}/${entry.value}")

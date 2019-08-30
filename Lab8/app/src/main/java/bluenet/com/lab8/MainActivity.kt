@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_main.*
@@ -20,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         //驗證發出對象與回傳狀態
         if(requestCode==1 && resultCode== Activity.RESULT_OK){
             //新增聯絡人
-            contacts.add(Contact(b.getString("name"), b.getString("phone")))
+            contacts.add(Contact(b.getString("name", ""), b.getString("phone", "")))
             //更新列表資料
             adapter.notifyDataSetChanged()
         }
