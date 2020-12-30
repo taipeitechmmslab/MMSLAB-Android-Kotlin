@@ -6,19 +6,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
-
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
         android:text="點餐:"
         android:textSize="22sp"
         android:textColor="@android:color/black"
         app:layout_constraintBottom_toBottomOf="@+id/btn_choice"
-        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/btn_choice" />
-
     <Button
         android:id="@+id/btn_choice"
         android:layout_width="wrap_content"
@@ -28,7 +26,6 @@
         android:text="選擇"
         app:layout_constraintStart_toEndOf="@+id/textView"
         app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
@@ -39,13 +36,12 @@
         android:textColor="@android:color/black"
         app:layout_constraintStart_toStartOf="@+id/textView"
         app:layout_constraintTop_toBottomOf="@+id/btn_choice" />
-
     <TextView
         android:id="@+id/tv_meal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="飲料: 無\n\n甜度: 無\n\n冰塊: 無"
+        android:text="飲料: 無\n\n 甜度: 無\n\n 冰塊: 無"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@+id/textView2"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />

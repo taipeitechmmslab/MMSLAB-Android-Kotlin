@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "460018642109",
+    "project_id": "lab18-6e9ff",
+    "storage_bucket": "lab18-6e9ff.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:460018642109:android:772f03f2ac6f91d82f1bd4",
+        "android_client_info": {
+          "package_name": "com.italkutalk.lab18"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "460018642109-v1kkq70cgvnq34m0onddeqaldaf1ufuv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyATj-jK38BKzptEh3lZVPIvEvLIQWWEHcI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "460018642109-v1kkq70cgvnq34m0onddeqaldaf1ufuv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Lab7</string>
 
-    <integer-array name="imgArray">
+    <integer-array name="image_list">
         <item>@drawable/apple</item>
         <item>@drawable/avocado</item>
         <item>@drawable/banana</item>
@@ -15,19 +15,6 @@
         <item>@drawable/strawberry</item>
         <item>@drawable/tomato</item>
     </integer-array>
-
-    <string-array name="nameArray">
-        <item>蘋果</item>
-        <item>酪梨</item>
-        <item>香蕉</item>
-        <item>櫻桃</item>
-        <item>椰子</item>
-        <item>葡萄</item>
-        <item>檸檬</item>
-        <item>橘子</item>
-        <item>桃子</item>
-        <item>鳳梨</item>
-        <item>草莓</item>
-        <item>番茄</item>
-    </string-array>
 </resources>
+
+

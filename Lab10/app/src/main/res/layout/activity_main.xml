@@ -1,19 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".MainActivity">
-
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+    <ImageView
+        android:id="@+id/img_frame"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
     <Button
-            android:id="@+id/btn_start"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="啟動"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        android:id="@+id/btn_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="開始"
+        app:layout_constraintBottom_toBottomOf="@+id/img_frame"
+        app:layout_constraintStart_toStartOf="@+id/btn_scale"
+        app:layout_constraintTop_toTopOf="@+id/img_frame" />
+    <Button
+        android:id="@+id/btn_stop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="停止"
+        app:layout_constraintStart_toEndOf="@+id/btn_start"
+        app:layout_constraintTop_toTopOf="@+id/btn_start" />
+    <ImageView
+        android:id="@+id/img_tween"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_scale"
+        app:layout_constraintStart_toStartOf="@+id/img_frame"
+        app:layout_constraintTop_toTopOf="@+id/btn_alpha"
+        app:srcCompat="@android:drawable/btn_star_big_on" />
+    <Button
+        android:id="@+id/btn_alpha"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="40dp"
+        android:text="透明"
+        app:layout_constraintStart_toEndOf="@+id/img_tween"
+        app:layout_constraintTop_toBottomOf="@+id/img_frame" />
+    <Button
+        android:id="@+id/btn_scale"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:text="縮放"
+        app:layout_constraintStart_toStartOf="@+id/btn_alpha"
+        app:layout_constraintTop_toBottomOf="@+id/btn_alpha" />
+    <Button
+        android:id="@+id/btn_translate"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:text="位移"
+        app:layout_constraintStart_toEndOf="@+id/btn_alpha"
+        app:layout_constraintTop_toTopOf="@+id/btn_alpha" />
+    <Button
+        android:id="@+id/btn_rotate"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:text="旋轉"
+        app:layout_constraintStart_toStartOf="@+id/btn_translate"
+        app:layout_constraintTop_toBottomOf="@+id/btn_translate" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
