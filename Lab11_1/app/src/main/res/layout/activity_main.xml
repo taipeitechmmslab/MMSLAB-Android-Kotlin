@@ -24,45 +24,38 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         app:layout_constraintTop_toBottomOf="@+id/textView">
         <Button
             android:id="@+id/btn_record"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="錄音"
-            app:layout_constraintEnd_toStartOf="@+id/btn_stop"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_marginEnd="4dp"
+            android:text="錄音" />
         <Button
             android:id="@+id/btn_stop_record"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:layout_marginEnd="4dp"
             android:enabled="false"
-            android:text="停止錄音"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/btn_record"
-            app:layout_constraintTop_toTopOf="@+id/btn_record" />
+            android:text="停止錄音" />
         <Button
             android:id="@+id/btn_play"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:layout_marginEnd="4dp"
             android:enabled="false"
-            android:text="播放"
-            app:layout_constraintEnd_toEndOf="@+id/btn_record"
-            app:layout_constraintStart_toStartOf="@+id/btn_record"
-            app:layout_constraintTop_toBottomOf="@+id/btn_record" />
+            android:text="播放" />
         <Button
             android:id="@+id/btn_stop_play"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:enabled="false"
-            android:text="停止播放"
-            app:layout_constraintEnd_toEndOf="@+id/btn_stop"
-            app:layout_constraintStart_toStartOf="@+id/btn_stop"
-            app:layout_constraintTop_toTopOf="@+id/btn_play" />
+            android:text="停止播放" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
