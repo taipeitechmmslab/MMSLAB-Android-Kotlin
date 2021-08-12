@@ -35,11 +35,16 @@ class MainActivity : AppCompatActivity() {
     }
     //發送請求
     private fun sendRequest() {
+        /*
         //環保署空氣品質指標 API
         val url = "https://opendata.epa.gov.tw/webapi/api/rest/datastore/" +
                 "355000000I-000259?filters=County" +
                 "%20eq%20%27%E8%87%BA%E5%8C%97%E5%B8%82%27&" +
                 "sort=SiteName&offset=0&limit=1000"
+         */
+        //本書原內容採用環保署空氣品質指標 API，但近期對方修改資料的取得方式，故範例提供更穩定的資料來源
+        val url = "https://api.italkutalk.com/api/air"
+
         //建立 Request.Builder 物件，藉由 url()將網址傳入，再建立 Request 物件
         val req = Request.Builder()
             .url(url)
