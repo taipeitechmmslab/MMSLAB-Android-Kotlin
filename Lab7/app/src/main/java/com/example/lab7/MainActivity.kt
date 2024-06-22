@@ -57,7 +57,6 @@ class MainActivity : AppCompatActivity() {
         // 建立 MyAdapter 物件，並傳入 adapter_vertical 作為畫面
         gridView.adapter = MyAdapter(this, item, R.layout.adapter_vertical)
         // 建立 MyAdapter 物件，並傳入 adapter_horizontal 作為畫面
-        listView.adapter = MyAdapter(this, item,
-            R.layout.adapter_horizontal)
+        listView.adapter = MyAdapter(this, item, R.layout.adapter_horizontal)
     }
 }
