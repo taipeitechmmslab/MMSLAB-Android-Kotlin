@@ -17,10 +17,33 @@ import java.io.File
 import java.util.Calendar
 
 class MainActivity : AppCompatActivity() {
+    // 定義 MediaRecorder 與 MediaPlayer 變數
     private lateinit var recorder: MediaRecorder
     private lateinit var player: MediaPlayer
+
+    // 定義錄音檔案資料夾與檔案名稱
     private lateinit var folder: File
     private var fileName = ""
+
+    // 回傳權限要求後的結果
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        // 判斷是否有結果且識別標籤相同
+        if (grantResults.isNotEmpty() && requestCode == 0) {
+            // 取出結果並判斷是否允許權限
+            if (grantResults[0] == PackageManager.PERMISSION_DENIED) {
+                finish() //若拒絕給予錄音權限，則關閉應用程式
+            } else {
+                // 允許錄音權限，所以正常執行應用程式
+                doInitialize()
+                setListener()
+            }
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,7 +82,8 @@ class MainActivity : AppCompatActivity() {
 
     // 執行初始化
     private fun doInitialize() {
-        // 初始化 recorder，如果 SDK 版本大於等于 31，則使用 MediaRecorder(Context)
+        // 初始化 recorder
+        // 如果 SDK 版本大於等于 31，則使用 MediaRecorder(Context)
         @Suppress("DEPRECATION")
         recorder = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             MediaRecorder(this)
@@ -70,7 +94,7 @@ class MainActivity : AppCompatActivity() {
         player = MediaPlayer()
 
         // 定義資料夾名稱
-        folder = File(filesDir.absolutePath+"/record")
+        folder = File(filesDir.absolutePath + "/record")
 
         // 如果不存在資料夾，則建立存放錄音檔的資料夾
         if (!folder.exists()) {
@@ -80,7 +104,7 @@ class MainActivity : AppCompatActivity() {
 
     // 設定資料夾
     private fun setListener() {
-        //將變數與XML元件綁定
+        // 將變數與XML元件綁定
         val btnRecord = findViewById<Button>(R.id.btnRecord)
         val btnStopRecord = findViewById<Button>(R.id.btnStopRecord)
         val btnPlay = findViewById<Button>(R.id.btnPlay)

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
@@ -8,7 +9,7 @@
     tools:context=".MainActivity">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imgPhoto"
         android:layout_width="250dp"
         android:layout_height="250dp"
         android:layout_marginTop="32dp"
@@ -18,21 +19,21 @@
         app:srcCompat="@android:drawable/ic_menu_gallery" />
 
     <Button
-        android:id="@+id/btn_photo"
+        android:id="@+id/btnCapture"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text="拍照"
+        app:layout_constraintEnd_toStartOf="@+id/btnRotate"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btn_rotate"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/imgPhoto" />
 
     <Button
-        android:id="@+id/btn_rotate"
+        android:id="@+id/btnRotate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="旋轉90度"
-        app:layout_constraintStart_toEndOf="@+id/btn_photo"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/btn_photo" />
+        app:layout_constraintStart_toEndOf="@+id/btnCapture"
+        app:layout_constraintTop_toTopOf="@+id/btnCapture" />
 </androidx.constraintlayout.widget.ConstraintLayout>
