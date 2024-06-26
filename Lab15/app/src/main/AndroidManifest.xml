@@ -23,7 +23,7 @@
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />
-        <!--  此處要放入在Google API Console取得的API金鑰  -->
+        <!--  此處要放入Maps SDK的API金鑰  -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDUh7INPsQFZujW2WV6On69l4TKlFqcF04"/>
