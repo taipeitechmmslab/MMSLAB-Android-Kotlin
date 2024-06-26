@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.lab15"
+    namespace = "com.example.lab14"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.lab15"
+        applicationId = "com.example.lab14"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
@@ -42,4 +42,6 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    implementation(libs.google.maps)
 }
