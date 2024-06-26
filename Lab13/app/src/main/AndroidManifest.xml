@@ -2,9 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
-
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -15,8 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Lab13"
         tools:targetApi="31">
-        <receiver
-            android:name=".MyReceiver"
+        <service
+            android:name=".MyService"
             android:enabled="true"
             android:exported="true" />
 
