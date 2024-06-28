@@ -22,7 +22,7 @@ import java.io.IOException
 class MainActivity : AppCompatActivity() {
     // 當前的圖片旋轉角度
     private var angle = 0f
-    // 元件
+    // 定義元件
     private lateinit var imgPhoto: ImageView
     private lateinit var btnCapture: Button
     private lateinit var btnRotate: Button
@@ -61,7 +61,9 @@ class MainActivity : AppCompatActivity() {
                 // 使用 startForResult 來拍攝照片
                 startForResult.launch(null)
             } catch (e: ActivityNotFoundException) {
-                Toast.makeText(this, "無相機應用程式", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    this, "無相機應用程式", Toast.LENGTH_SHORT
+                ).show()
             }
         }
 
@@ -78,7 +80,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    //辨識圖像
+    // 辨識圖像
     private fun recognizeImage(bitmap: Bitmap) {
         try {
             // 取得辨識標籤
@@ -90,14 +92,14 @@ class MainActivity : AppCompatActivity() {
             // 匹配辨識標籤與圖像，並建立執行成功與失敗的監聽器
             labeler.process(inputImage)
                 .addOnSuccessListener { labels ->
-                    //取得辨識結果與可信度
+                    // 取得辨識結果與可信度
                     val result = arrayListOf<String>()
                     for (label in labels) {
                         val text = label.text
                         val confidence = label.confidence
                         result.add("$text, 可信度：${confidence * 100}%")
                     }
-                    //將結果顯示於 ListView
+                    // 將結果顯示於 ListView
                     val listView = findViewById<ListView>(R.id.listView)
                     listView.adapter = ArrayAdapter(
                         this, android.R.layout.simple_list_item_1, result
