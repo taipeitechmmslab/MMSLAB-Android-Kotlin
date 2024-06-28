@@ -5,10 +5,10 @@ data class MyObject(
 ) {
     data class Result(
         val records: List<Record>
-    )
-
-    data class Record(
-        val SiteName: String,
-        val Status: String,
-    )
+    ) {
+        data class Record(
+            val SiteName: String,
+            val Status: String,
+        )
+    }
 }
