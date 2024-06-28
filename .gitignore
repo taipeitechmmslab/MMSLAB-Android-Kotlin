@@ -20,4 +20,5 @@ output.json
 *.iml
 /.idea/
 .idea/*
+**/.idea/
 misc.xml
