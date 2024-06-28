@@ -14,7 +14,7 @@ class MyMessagingService : FirebaseMessagingService() {
     // 應用程式正呈現於螢幕且收到推播通知時進入
     override fun onMessageReceived(msg: RemoteMessage) {
         super.onMessageReceived(msg)
-        //藉由forEach將通知附帶的資料取出
+        // 藉由forEach將通知附帶的資料取出
         msg.data.entries.forEach {
             Log.e("data", "key:${it.key}, value:${it.value}")
         }
