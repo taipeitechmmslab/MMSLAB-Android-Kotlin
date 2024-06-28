@@ -19,7 +19,6 @@ class MainActivity : AppCompatActivity() {
     // 定義Provider的Uri
     private val uri = Uri.parse("content://com.example.lab16")
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -74,7 +73,7 @@ class MainActivity : AppCompatActivity() {
                 values.put("price", price)
                 // 透過Resolver向Provider更新特定書籍的價格，並取得更新的筆數
                 val count = contentResolver.update(uri, values, name, null)
-                //判斷更新筆數是否大於零，若是則更新成功
+                // 判斷更新筆數是否大於零，若是則更新成功
                 if (count > 0) {
                     showToast("更新:$name,價格:$price")
                     cleanEditText()
@@ -109,7 +108,7 @@ class MainActivity : AppCompatActivity() {
             items.clear() // 清空舊資料
             showToast("共有${c.count}筆資料")
             for (i in 0 until c.count) {
-                //加入新資料
+                // 加入新資料
                 items.add("書名:${c.getString(0)}\t\t\t\t價格:${c.getInt(1)}")
                 c.moveToNext() // 移動到下一筆
             }

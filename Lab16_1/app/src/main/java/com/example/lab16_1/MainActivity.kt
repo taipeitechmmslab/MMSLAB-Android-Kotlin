@@ -37,6 +37,11 @@ class MainActivity : AppCompatActivity() {
         setListener()
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        dbrw.close() // 關閉資料庫
+    }
+
     // 設定監聽器
     private fun setListener() {
         val edBook = findViewById<EditText>(R.id.edBook)
