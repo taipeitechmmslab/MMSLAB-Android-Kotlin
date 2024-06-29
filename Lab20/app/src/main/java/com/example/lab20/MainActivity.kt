@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -40,9 +41,15 @@ class MainActivity : AppCompatActivity() {
 
         // 觀察註冊結果
         viewModel.registerResult.observe(this) { result ->
+            // 顯示註冊結果
+            Toast.makeText(
+                this, result.second, Toast.LENGTH_SHORT
+            ).show()
+            // 判斷是否註冊成功
             if (result.first) {
-                tvHint.text = "註冊成功"
+                tvHint.text = result.second
                 tvHint.setTextColor(getColor(android.R.color.holo_green_dark))
+                // 跳轉至 SecActivity
                 val i = Intent(this, SecActivity::class.java)
                 startActivity(i)
             } else {
