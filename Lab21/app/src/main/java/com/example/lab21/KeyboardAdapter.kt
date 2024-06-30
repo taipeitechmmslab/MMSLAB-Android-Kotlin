@@ -26,6 +26,8 @@ class KeyboardAdapter(
             binding.isNumber = item.toIntOrNull() != null
             // 設定點擊事件
             binding.root.setOnClickListener { onKeyClick(item) }
+            // 立即更新 UI
+            binding.executePendingBindings()
         }
 
         companion object {
