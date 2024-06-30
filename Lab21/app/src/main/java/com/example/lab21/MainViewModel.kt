@@ -19,6 +19,7 @@ class MainViewModel : ViewModel() {
     // 宣告運算符號類型
     private val operators = listOf("+", "-", "×", "÷")
 
+    // 處理按下鍵盤事件
     fun onKeyClick(key: String) {
         when (key) {
             // 清除公式和結果
@@ -54,6 +55,7 @@ class MainViewModel : ViewModel() {
         lastKey = key
     }
 
+    // 計算結果
     private fun calculate(): Float {
         return try {
             val formula = _formula.value ?: return 0f

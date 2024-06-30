@@ -28,6 +28,7 @@ class MainActivity : AppCompatActivity() {
         binding.unbind()
     }
 
+    // 執行初始化
     private fun doInitialize() {
         enableEdgeToEdge()
         // 設定 DataBinding
@@ -45,6 +46,7 @@ class MainActivity : AppCompatActivity() {
         binding.vm = viewModel
     }
 
+    // 設定鍵盤
     private fun setupKeyboard() {
         // 設定鍵盤
         val keys = listOf(
