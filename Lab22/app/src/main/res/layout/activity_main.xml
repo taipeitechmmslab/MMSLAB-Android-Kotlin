@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <!--  MainViewModel  -->
+        <variable
+            name="vm"
+            type="com.example.lab22.MainViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
+
+        <ProgressBar
+            android:id="@+id/pbCircle"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:indeterminateOnly="false"
+            android:max="100"
+            android:progress="@{vm.progress, default=0}"
+            android:progressDrawable="@drawable/pb_circular_determinative"
+            app:layout_constraintBottom_toTopOf="@+id/btnStart"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:layout_constraintWidth_max="200dp" />
+
+        <TextView
+            android:id="@+id/tvProgress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text='@{vm.formattedTimeLeft, default="00:00"}'
+            android:textColor="@android:color/black"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="@+id/pbCircle"
+            app:layout_constraintEnd_toEndOf="@+id/pbCircle"
+            app:layout_constraintStart_toStartOf="@+id/pbCircle"
+            app:layout_constraintTop_toTopOf="@+id/pbCircle"
+            tools:text="00:00" />
+
+        <Button
+            android:id="@+id/btnStart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:onClick="@{() -> vm.startOrPauseTimer()}"
+            android:text='@{vm.isRunning ? "暫停" : "開始", default="開始"}'
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btnAdd5Sec"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pbCircle" />
+
+        <Button
+            android:id="@+id/btnAdd5Sec"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> vm.addFiveSeconds()}"
+            android:text="增加5秒"
+            app:layout_constraintEnd_toStartOf="@+id/btnTimes"
+            app:layout_constraintStart_toEndOf="@+id/btnStart"
+            app:layout_constraintTop_toTopOf="@+id/btnStart" />
+
+        <Button
+            android:id="@+id/btnTimes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> vm.addMultiplier()}"
+            android:text='@{"x" + vm.multiplier, default="x1"}'
+            app:layout_constraintEnd_toStartOf="@+id/btnReset"
+            app:layout_constraintStart_toEndOf="@+id/btnAdd5Sec"
+            app:layout_constraintTop_toTopOf="@+id/btnStart" />
+
+        <Button
+            android:id="@+id/btnReset"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> vm.resetTimer()}"
+            android:text="重設"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btnTimes"
+            app:layout_constraintTop_toTopOf="@+id/btnStart" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
