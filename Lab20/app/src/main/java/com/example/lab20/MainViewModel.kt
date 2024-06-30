@@ -5,14 +5,13 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class MainViewModel : ViewModel() {
-
     // 模擬網路是否有問題，true 代表有問題，false 代表沒問題
     private val networkErr = listOf(true, false, false)
 
     // 已註冊過的帳號列表
     private val accountList = mutableListOf<String>()
 
-    // 註冊結果，第一個參數為是否成功，第二個參數為錯誤訊息
+    // 註冊結果，第一個參數為是否成功，第二個參數為訊息
     private val _registerResult = MutableLiveData<Pair<Boolean, String>>()
     val registerResult: LiveData<Pair<Boolean, String>> = _registerResult
 

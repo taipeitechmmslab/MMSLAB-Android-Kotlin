@@ -48,13 +48,17 @@ class MainActivity : AppCompatActivity() {
             // 判斷是否註冊成功
             if (result.first) {
                 tvHint.text = result.second
-                tvHint.setTextColor(getColor(android.R.color.holo_green_dark))
+                tvHint.setTextColor(
+                    getColor(android.R.color.holo_green_dark)
+                )
                 // 跳轉至 SecActivity
                 val i = Intent(this, SecActivity::class.java)
                 startActivity(i)
             } else {
                 tvHint.text = "註冊失敗：${result.second}"
-                tvHint.setTextColor(getColor(android.R.color.holo_red_dark))
+                tvHint.setTextColor(
+                    getColor(android.R.color.holo_red_dark)
+                )
             }
         }
     }
