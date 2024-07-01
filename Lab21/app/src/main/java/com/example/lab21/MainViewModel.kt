@@ -5,11 +5,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class MainViewModel : ViewModel() {
-    // 設定公式的 LiveData
+    //宣告公式的 LiveData
     private val _formula = MutableLiveData<String>()
     val formula: LiveData<String> = _formula
 
-    // 設定結果的 LiveData
+    // 宣告計算結果的 LiveData
     private val _result = MutableLiveData<Float>()
     val result: LiveData<Float> = _result
 
@@ -52,16 +52,19 @@ class MainViewModel : ViewModel() {
                 _result.value = calculate()
             }
         }
+        // 更新最後一次按下的鍵
         lastKey = key
     }
 
-    // 計算結果
+    // 執行計算
     private fun calculate(): Float {
         return try {
+            // 取得公式
             val formula = _formula.value ?: return 0f
+            // 分割公式成數值和運算符
             val parts = formula.split(" ")
 
-            // 處理乘除運算
+            // 先處理乘除運算
             val stack = mutableListOf<String>()
             var i = 0
             while (i < parts.size) {
@@ -78,7 +81,7 @@ class MainViewModel : ViewModel() {
                 }
             }
 
-            // 處理加減運算
+            // 後處理加減運算
             var result = stack[0].toFloat()
             i = 1
             while (i < stack.size) {

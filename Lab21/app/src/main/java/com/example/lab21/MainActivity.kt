@@ -22,12 +22,6 @@ class MainActivity : AppCompatActivity() {
         setupKeyboard()
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        // 解除 DataBinding
-        binding.unbind()
-    }
-
     // 執行初始化
     private fun doInitialize() {
         enableEdgeToEdge()
