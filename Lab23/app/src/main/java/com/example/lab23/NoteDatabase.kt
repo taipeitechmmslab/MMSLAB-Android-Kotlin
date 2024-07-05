@@ -9,7 +9,7 @@ import androidx.room.RoomDatabase
     // 定義資料表類別
     entities = [Note::class],
     // 定義資料庫版本
-    version = 2
+    version = 1
 )
 abstract class NoteDatabase : RoomDatabase() {
     // 定義抽象方法，用來取得 DAO 操作介面
@@ -33,7 +33,8 @@ abstract class NoteDatabase : RoomDatabase() {
         private fun buildDatabase(context: Context) =
             Room.databaseBuilder(
                 context.applicationContext,
-                NoteDatabase::class.java, "note_database"
+                NoteDatabase::class.java,
+                "note_database"
             ).fallbackToDestructiveMigration().build()
     }
 }

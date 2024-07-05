@@ -1,6 +1,5 @@
 package com.example.lab23
 
-import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
@@ -10,15 +9,16 @@ import androidx.room.Update
 
 @Dao
 interface NoteDao {
-    @Query("SELECT * FROM notes ORDER BY timestamp DESC")
-    fun getAllNotes(): LiveData<List<Note>>
-
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    // 取得所有記事本
+    @Query("SELECT * FROM notes")
+    suspend fun getAllNotes(): List<Note>
+    // 新增記事本
+    @Insert
     suspend fun insertNote(note: Note)
-
+    // 刪除記事本
     @Delete
     suspend fun deleteNote(note: Note)
-
+    // 更新記事本
     @Update
     suspend fun updateNote(note: Note)
 }

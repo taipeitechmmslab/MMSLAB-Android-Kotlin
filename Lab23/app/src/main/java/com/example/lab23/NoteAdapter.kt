@@ -2,8 +2,6 @@ package com.example.lab23
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.lab23.databinding.ItemNoteBinding
 import java.text.SimpleDateFormat
@@ -11,22 +9,17 @@ import java.util.Date
 import java.util.Locale
 
 class NoteAdapter(
+    // 點擊監聽器
     private val onNoteClick: (Note) -> Unit,
+    // 長按監聽器
     private val onNoteLongClick: (Note) -> Unit
-) : ListAdapter<Note, NoteAdapter.NoteViewHolder>(NoteDiffCallback()) {
+) : RecyclerView.Adapter<NoteAdapter.NoteViewHolder>() {
 
-    class NoteDiffCallback : DiffUtil.ItemCallback<Note>() {
-        // 比對項目 Id 是否相同
-        override fun areItemsTheSame(
-            oldItem: Note,
-            newItem: Note
-        ) = oldItem.id == newItem.id
+    private var notes: List<Note> = emptyList()
 
-        // 比對項目內容是否相同
-        override fun areContentsTheSame(
-            oldItem: Note,
-            newItem: Note
-        ) = oldItem == newItem
+    fun setNotes(newNotes: List<Note>) {
+        this.notes = newNotes
+        notifyDataSetChanged()
     }
 
     class NoteViewHolder(
@@ -75,7 +68,9 @@ class NoteAdapter(
         return NoteViewHolder.from(parent)
     }
 
+    override fun getItemCount(): Int = notes.size
+
     override fun onBindViewHolder(holder: NoteViewHolder, position: Int) {
-        holder.bind(getItem(position), onNoteClick, onNoteLongClick)
+        holder.bind(notes[position], onNoteClick, onNoteLongClick)
     }
 }

@@ -44,6 +44,8 @@ class MainActivity : AppCompatActivity() {
         binding.lifecycleOwner = this
         // 設定 DataBinding 的參數
         binding.vm = viewModel
+        // 取得所有記事本
+        viewModel.queryAllNotes()
     }
 
     // 設定記事本列表
@@ -61,7 +63,7 @@ class MainActivity : AppCompatActivity() {
         // 觀察 LiveData
         viewModel.allNotes.observe(this) { notes ->
             // 更新 Adapter 的記事本列表
-            noteAdapter.submitList(notes)
+            noteAdapter.setNotes(notes)
         }
     }
 
