@@ -1,6 +1,5 @@
 package com.example.lab14
 
-import android.Manifest
 import android.content.pm.PackageManager
 import android.graphics.Color
 import android.os.Bundle
@@ -59,12 +58,12 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
         // 是否允許精確位置權限
         val isAccessFineLocationGranted =
             ActivityCompat.checkSelfPermission(
-                this, Manifest.permission.ACCESS_FINE_LOCATION
+                this, android.Manifest.permission.ACCESS_FINE_LOCATION
             ) == PackageManager.PERMISSION_GRANTED
         // 是否允許粗略位置權限
         val isAccessCoarseLocationGranted =
             ActivityCompat.checkSelfPermission(
-                this, Manifest.permission.ACCESS_COARSE_LOCATION
+                this, android.Manifest.permission.ACCESS_COARSE_LOCATION
             ) == PackageManager.PERMISSION_GRANTED
         if (isAccessFineLocationGranted && isAccessCoarseLocationGranted) {
             // 顯示目前位置與目前位置的按鈕
@@ -94,7 +93,7 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
             // 請求權限
             // 精確定位包含粗略定位，因此只要求精確定位權限就好
             ActivityCompat.requestPermissions(
-                this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 0
+                this, arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION), 0
             )
         }
     }

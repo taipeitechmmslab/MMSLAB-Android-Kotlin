@@ -14,9 +14,10 @@ class NoteAdapter(
     // 長按監聽器
     private val onNoteLongClick: (Note) -> Unit
 ) : RecyclerView.Adapter<NoteAdapter.NoteViewHolder>() {
-
+    // 記錄所有記事資料
     private var notes: List<Note> = emptyList()
 
+    // 設定新的記事資料
     fun setNotes(newNotes: List<Note>) {
         this.notes = newNotes
         notifyDataSetChanged()

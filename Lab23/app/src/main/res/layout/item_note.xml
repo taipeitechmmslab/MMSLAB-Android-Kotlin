@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <!--  記事本項目  -->
         <variable
             name="note"
             type="com.example.lab23.Note" />
-
+        <!--  格式化後的時間  -->
         <variable
             name="formatTime"
             type="String" />

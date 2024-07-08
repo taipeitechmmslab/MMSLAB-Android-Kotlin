@@ -24,7 +24,10 @@ class MainActivity : AppCompatActivity() {
         findViewById<Button>(R.id.btnStart).setOnClickListener {
             // 使用 startService() 方法啟動 Service
             startService(Intent(this, MyService::class.java))
-            Toast.makeText(this, "啟動Service", Toast.LENGTH_SHORT)
+            // 顯示 Toast 訊息
+            Toast.makeText(
+                this, "啟動Service", Toast.LENGTH_SHORT
+            ).show()
             // 關閉Activity
             finish()
         }
