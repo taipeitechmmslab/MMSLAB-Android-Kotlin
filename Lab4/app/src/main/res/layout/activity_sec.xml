@@ -1,116 +1,130 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SecActivity">
+
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tvDrink"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="飲料"
         android:textSize="22sp"
-        android:textColor="@android:color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
     <EditText
-        android:id="@+id/ed_drink"
+        android:id="@+id/edDrink"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="56dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:ems="10"
-        android:inputType="textPersonName"
         android:hint="請輸入飲料名稱"
+        android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintStart_toStartOf="@+id/tvDrink"
+        app:layout_constraintTop_toBottomOf="@+id/tvDrink" />
+
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/tvSugar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="甜度"
         android:textSize="22sp"
-        android:textColor="@android:color/black"
-        app:layout_constraintStart_toStartOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/ed_drink" />
+        app:layout_constraintStart_toStartOf="@+id/tvDrink"
+        app:layout_constraintTop_toBottomOf="@+id/edDrink" />
+
     <RadioGroup
-        android:id="@+id/radioGroup"
+        android:id="@+id/rgSugar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/textView2">
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="@+id/tvDrink"
+        app:layout_constraintTop_toBottomOf="@+id/tvSugar">
+
         <RadioButton
             android:id="@+id/radioButton1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="無糖" />
+
         <RadioButton
             android:id="@+id/radioButton2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="微糖" />
+
         <RadioButton
             android:id="@+id/radioButton3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="半糖" />
+
         <RadioButton
             android:id="@+id/radioButton4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="全糖"
-            android:checked="true"/>
+            android:checked="true"
+            android:text="全糖" />
     </RadioGroup>
+
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/tvIce"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="冰塊"
         android:textSize="22sp"
-        android:textColor="@android:color/black"
-        app:layout_constraintStart_toStartOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+        app:layout_constraintStart_toStartOf="@+id/tvDrink"
+        app:layout_constraintTop_toBottomOf="@+id/rgSugar" />
+
     <RadioGroup
-        android:id="@+id/radioGroup2"
+        android:id="@+id/rgIce"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/textView3">
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="@+id/tvDrink"
+        app:layout_constraintTop_toBottomOf="@+id/tvIce">
+
         <RadioButton
             android:id="@+id/radioButton5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="去冰" />
+
         <RadioButton
             android:id="@+id/radioButton6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="微冰" />
+
         <RadioButton
             android:id="@+id/radioButton7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="少冰" />
+
         <RadioButton
             android:id="@+id/radioButton8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="正常冰"
-            android:checked="true"/>
+            android:checked="true"
+            android:text="正常冰" />
     </RadioGroup>
+
     <Button
-        android:id="@+id/btn_send"
+        android:id="@+id/btnSend"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="送出"
-        app:layout_constraintStart_toStartOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup2" />
+        app:layout_constraintStart_toStartOf="@+id/tvDrink"
+        app:layout_constraintTop_toBottomOf="@+id/rgIce" />
 </androidx.constraintlayout.widget.ConstraintLayout>

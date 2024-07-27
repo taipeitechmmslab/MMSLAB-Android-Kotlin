@@ -1,164 +1,184 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
+
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="體位檢測機"
         android:textSize="22sp"
-        android:textColor="@android:color/black"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/tvHeight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
         android:text="身高 :"
-        app:layout_constraintStart_toStartOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintBottom_toBottomOf="@+id/edHeight"
+        app:layout_constraintStart_toStartOf="@+id/tvTitle"
+        app:layout_constraintTop_toTopOf="@+id/edHeight" />
+
     <EditText
-        android:id="@+id/ed_height"
+        android:id="@+id/edHeight"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="56dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
+        android:hint="請輸入身高"
         android:inputType="numberSigned"
-        app:layout_constraintBottom_toBottomOf="@+id/textView2"
-        app:layout_constraintStart_toEndOf="@+id/textView2"
-        app:layout_constraintTop_toTopOf="@+id/textView2" />
+        app:layout_constraintStart_toEndOf="@+id/tvHeight"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
+
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/tvWeight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
         android:text="體重 :"
-        app:layout_constraintStart_toStartOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintBottom_toBottomOf="@+id/edWeight"
+        app:layout_constraintStart_toStartOf="@+id/tvTitle"
+        app:layout_constraintTop_toTopOf="@+id/edWeight" />
+
     <EditText
-        android:id="@+id/ed_weight"
+        android:id="@+id/edWeight"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="56dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
+        android:hint="請輸入體重"
         android:inputType="numberSigned"
-        app:layout_constraintBottom_toBottomOf="@+id/textView3"
-        app:layout_constraintStart_toEndOf="@+id/textView3"
-        app:layout_constraintTop_toTopOf="@+id/textView3" />
+        app:layout_constraintStart_toEndOf="@+id/tvWeight"
+        app:layout_constraintTop_toBottomOf="@+id/edHeight" />
+
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/tvAge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
         android:text="年齡 :"
-        app:layout_constraintStart_toStartOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintBottom_toBottomOf="@+id/edAge"
+        app:layout_constraintStart_toStartOf="@+id/tvTitle"
+        app:layout_constraintTop_toTopOf="@+id/edAge" />
+
     <EditText
-        android:id="@+id/ed_age"
+        android:id="@+id/edAge"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="56dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
+        android:hint="請輸入年齡"
         android:inputType="numberSigned"
-        app:layout_constraintBottom_toBottomOf="@+id/textView4"
-        app:layout_constraintStart_toEndOf="@+id/textView4"
-        app:layout_constraintTop_toTopOf="@+id/textView4" />
+        app:layout_constraintStart_toEndOf="@+id/tvAge"
+        app:layout_constraintTop_toBottomOf="@+id/edWeight" />
+
     <RadioGroup
         android:id="@+id/radioGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:orientation="horizontal"
-        app:layout_constraintStart_toStartOf="@+id/textView4"
-        app:layout_constraintTop_toBottomOf="@+id/ed_age">
+        app:layout_constraintStart_toStartOf="@+id/tvAge"
+        app:layout_constraintTop_toBottomOf="@+id/edAge">
+
         <RadioButton
-            android:id="@+id/btn_boy"
+            android:id="@+id/btnBoy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="男生"
-            android:checked="true"/>
+            android:checked="true"
+            android:text="男生" />
+
         <RadioButton
-            android:id="@+id/btn_girl"
+            android:id="@+id/btnGirl"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="女生"/>
+            android:text="女生" />
     </RadioGroup>
+
     <Button
-        android:id="@+id/btn_calculate"
+        android:id="@+id/btnCalculate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text="計算"
-        app:layout_constraintStart_toStartOf="@+id/textView2"
+        app:layout_constraintStart_toStartOf="@+id/tvHeight"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+
     <TextView
-        android:id="@+id/tv_weight"
+        android:id="@+id/tvWeightResult"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="標準體重\n 無"
+        android:layout_marginStart="32dp"
         android:gravity="center"
-        app:layout_constraintBottom_toBottomOf="@+id/btn_calculate"
-        app:layout_constraintStart_toEndOf="@+id/btn_calculate"
-        app:layout_constraintTop_toTopOf="@+id/btn_calculate" />
+        android:text="標準體重\n無"
+        app:layout_constraintBottom_toBottomOf="@+id/btnCalculate"
+        app:layout_constraintStart_toEndOf="@+id/btnCalculate"
+        app:layout_constraintTop_toTopOf="@+id/btnCalculate" />
+
     <TextView
-        android:id="@+id/tv_fat"
+        android:id="@+id/tvFatResult"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="體脂肪\n 無"
+        android:layout_marginStart="32dp"
         android:gravity="center"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_weight"
-        app:layout_constraintStart_toEndOf="@+id/tv_weight"
-        app:layout_constraintTop_toTopOf="@+id/tv_weight" />
+        android:text="體脂肪\n無"
+        app:layout_constraintBottom_toBottomOf="@+id/tvWeightResult"
+        app:layout_constraintStart_toEndOf="@+id/tvWeightResult"
+        app:layout_constraintTop_toTopOf="@+id/tvWeightResult" />
+
     <TextView
-        android:id="@+id/tv_bmi"
+        android:id="@+id/tvBmiResult"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="BMI\n 無"
+        android:layout_marginStart="32dp"
         android:gravity="center"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_fat"
-        app:layout_constraintStart_toEndOf="@+id/tv_fat"
-        app:layout_constraintTop_toTopOf="@+id/tv_fat" />
+        android:text="BMI\n無"
+        app:layout_constraintBottom_toBottomOf="@+id/tvFatResult"
+        app:layout_constraintStart_toEndOf="@+id/tvFatResult"
+        app:layout_constraintTop_toTopOf="@+id/tvFatResult" />
+
     <LinearLayout
-        android:id="@+id/ll_progress"
-        android:orientation="horizontal"
+        android:id="@+id/llProgress"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
+        android:background="#cc000000"
+        android:clickable="true"
         android:elevation="3dp"
         android:focusable="true"
-        android:clickable="true"
-        android:background="#cc000000"
+        android:gravity="center"
+        android:orientation="horizontal"
         android:visibility="gone">
+
         <ProgressBar
             style="?android:attr/progressBarStyle"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
+
         <ProgressBar
-            android:id="@+id/progressBar2"
+            android:id="@+id/progressBar"
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:progress="0"/>
+            android:progress="0" />
+
         <TextView
-            android:id="@+id/tv_progress"
+            android:id="@+id/tvProgress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:text="0%"
-            android:textColor="@android:color/white"/>
+            android:textColor="@android:color/white" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
