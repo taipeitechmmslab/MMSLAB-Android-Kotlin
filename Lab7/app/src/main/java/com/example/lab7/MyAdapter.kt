@@ -1,38 +1,66 @@
 package com.example.lab7
 
-import android.content.Context
-import android.view.View
-import android.view.ViewGroup
+import android.os.Bundle
 import android.widget.ArrayAdapter
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.GridView
+import android.widget.ListView
+import android.widget.Spinner
+import android.widget.Toast
+import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 
-class MyAdapter(
-    context: Context,
-    data: List<Item>,
-    private val layout: Int
-) : ArrayAdapter<Item>(context, layout, data) {
-
-    override fun getView(
-        position: Int,
-        convertView: View?,
-        parent: ViewGroup
-    ): View {
-        // 依據傳入的 Layout 建立畫面，若是已經存在則直接使用
-        val view = convertView ?: View.inflate(parent.context, layout, null)
-        // 依據 position 取得對應的資料內容
-        val item = getItem(position) ?: return view
-        // 將圖片指派給 ImageView 呈現
-        val imgPhoto = view.findViewById<ImageView>(R.id.imgPhoto)
-        imgPhoto.setImageResource(item.photo)
-        // 將訊息指派給 TextView 呈現，若是垂直排列則為名稱，否則為名稱及價格
-        val tvMsg = view.findViewById<TextView>(R.id.tvMsg)
-        tvMsg.text = if (layout == R.layout.adapter_vertical) {
-            item.name
-        } else {
-            "${item.name}: ${item.price}元"
+class MainActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        setContentView(R.layout.activity_main)
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
         }
-        // 回傳此項目的畫面
-        return view
+
+        val spinner = findViewById<Spinner>(R.id.spinner)
+        val listView = findViewById<ListView>(R.id.listView)
+        val gridView = findViewById<GridView>(R.id.gridView)
+
+        val count = mutableListOf<String>()
+        val items = mutableListOf<Item>()
+        val priceRange = 10..100
+
+        // 優化：使用 try/finally 確保 TypedArray 資源必定釋放
+        val array = resources.obtainTypedArray(R.array.image_list)
+        try {
+            for (index in 0 until array.length()) {
+                val photo = array.getResourceId(index, 0)
+                val name = "水果${index + 1}"
+                val price = priceRange.random()
+                count.add("${index + 1}個")
+                items.add(Item(photo, name, price))
+            }
+        } finally {
+            array.recycle()
+        }
+
+        spinner.adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, count)
+        gridView.numColumns = 3
+        gridView.adapter = MyAdapter(this, items, R.layout.adapter_vertical)
+        listView.adapter = MyAdapter(this, items, R.layout.adapter_horizontal)
+
+        // 優化：新增點擊事件，連動 Spinner 顯示所選水果與數量
+        val onItemClick = { position: Int ->
+            val selectedItem = items[position]
+            val selectedCount = spinner.selectedItem.toString()
+            Toast.makeText(
+                this,
+                "已選擇 ${selectedItem.name}（${selectedItem.price}元）x $selectedCount",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+
+        gridView.setOnItemClickListener { _, _, position, _ -> onItemClick(position) }
+        listView.setOnItemClickListener { _, _, position, _ -> onItemClick(position) }
     }
 }
