@@ -14,26 +14,21 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 class MainActivity : AppCompatActivity() {
-    // 宣告 MyAdapter 物件，使用 lateinit 關鍵字來延遲初始化
     private lateinit var myAdapter: MyAdapter
-
-    // 宣告 contacts 陣列，表示聯絡人資料
     private val contacts = ArrayList<Contact>()
 
-    // 宣告 ActivityResultLauncher。
-    // 內部負責處理 SecActivity 回傳結果
     private val startForResult = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
     ) { result: ActivityResult ->
         if (result.resultCode == Activity.RESULT_OK) {
-            // 取得回傳的 Intent，並從 Intent 中取得聯絡人資訊
-            val intent = result.data
-            val name = intent?.getStringExtra("name") ?: ""
-            val phone = intent?.getStringExtra("phone") ?: ""
-            // 新增聯絡人資料
-            contacts.add(Contact(name, phone))
-            // 更新列表
-            myAdapter.notifyDataSetChanged()
+            // 優化：使用 let 安全處理回傳的 Intent
+            result.data?.let { intent ->
+                val name = intent.getStringExtra("name").orEmpty()
+                val phone = intent.getStringExtra("phone").orEmpty()
+                contacts.add(Contact(name, phone))
+                // 優化：使用 notifyItemInserted 局部更新，取代效能較差的 notifyDataSetChanged()
+                myAdapter.notifyItemInserted(contacts.size - 1)
+            }
         }
     }
 
@@ -46,20 +41,21 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        // 宣告元件變數並使用 findViewByID 方法取得元件
+
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         val btnAdd = findViewById<Button>(R.id.btnAdd)
-        // 創建 LinearLayoutManager 物件，設定垂直排列
-        val linearLayoutManager = LinearLayoutManager(this)
-        linearLayoutManager.orientation = LinearLayoutManager.VERTICAL
-        recyclerView.layoutManager = linearLayoutManager
-        // 創建 MyAdapter 並連結 recyclerView
+
+        // 優化：使用 apply 簡化 LayoutManager 與 RecyclerView 初始化
         myAdapter = MyAdapter(contacts)
-        recyclerView.adapter = myAdapter
-        // 設定按鈕監聽器，使用 startForResult 前往 SecActivity
+        recyclerView.apply {
+            layoutManager = LinearLayoutManager(this@MainActivity).apply {
+                orientation = LinearLayoutManager.VERTICAL
+            }
+            adapter = myAdapter
+        }
+
         btnAdd.setOnClickListener {
-            val i = Intent(this, SecActivity::class.java)
-            startForResult.launch(i)
+            startForResult.launch(Intent(this, SecActivity::class.java))
         }
     }
 }
