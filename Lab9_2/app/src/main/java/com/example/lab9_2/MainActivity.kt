@@ -13,10 +13,13 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import kotlin.math.pow
 
 class MainActivity : AppCompatActivity() {
-    // 建立變數以利後續綁定元件
     private lateinit var btnCalculate: Button
     private lateinit var edHeight: EditText
     private lateinit var edWeight: EditText
@@ -39,7 +42,6 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        // 將變數與 XML 元件綁定
         btnCalculate = findViewById(R.id.btnCalculate)
         edHeight = findViewById(R.id.edHeight)
         edWeight = findViewById(R.id.edWeight)
@@ -52,67 +54,54 @@ class MainActivity : AppCompatActivity() {
         llProgress = findViewById(R.id.llProgress)
         btnBoy = findViewById(R.id.btnBoy)
 
-        // 對計算按鈕設定監聽器
         btnCalculate.setOnClickListener {
             when {
                 edHeight.text.isEmpty() -> showToast("請輸入身高")
                 edWeight.text.isEmpty() -> showToast("請輸入體重")
                 edAge.text.isEmpty() -> showToast("請輸入年齡")
-                else -> runThread() // 執行 runThread 方法
+                else -> runCoroutines()
             }
         }
     }
 
-    // 建立 showToast 方法顯示 Toast 訊息
     private fun showToast(msg: String) =
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
 
-    // 用 Thread 模擬檢測過程
-    private fun runThread() {
+    // 優化：改用 Kotlin Coroutines (lifecycleScope.launch + delay) 取代 Thread 與 runOnUiThread
+    private fun runCoroutines() {
+        btnCalculate.isEnabled = false
         tvWeightResult.text = "標準體重\n無"
         tvFatResult.text = "體脂肪\n無"
         tvBmiResult.text = "BMI\n無"
-        // 初始化進度條
         progressBar.progress = 0
         tvProgress.text = "0%"
-        // 顯示進度條
         llProgress.visibility = View.VISIBLE
 
-        Thread {
+        lifecycleScope.launch(Dispatchers.Main) {
             var progress = 0
-            // 建立迴圈執行一百次共延長五秒
             while (progress < 100) {
-                // 執行緒延遲 50ms 後執行
-                try {
-                    Thread.sleep(50)
-                } catch (ignored: InterruptedException) {
-                }
-                // 計數加一
+                delay(50) // 掛起 50ms，不阻塞主執行緒
                 progress++
-                // 切換到 Main Thread 執行進度更新
-                runOnUiThread {
-                    progressBar.progress = progress
-                    tvProgress.text = "$progress%"
-                }
+                progressBar.progress = progress
+                tvProgress.text = "$progress%"
             }
 
-            val height = edHeight.text.toString().toDouble() // 身高
-            val weight = edWeight.text.toString().toDouble() // 體重
-            val age = edAge.text.toString().toDouble() // 年齡
-            val bmi = weight / ((height / 100).pow(2)) // BMI
-            // 計算男女的體脂率並使用 Pair 類別進行解構宣告
+            val height = edHeight.text.toString().toDouble()
+            val weight = edWeight.text.toString().toDouble()
+            val age = edAge.text.toString().toDouble()
+            val bmi = weight / ((height / 100).pow(2))
+
             val (standWeight, bodyFat) = if (btnBoy.isChecked) {
                 Pair((height - 80) * 0.7, 1.39 * bmi + 0.16 * age - 19.34)
             } else {
                 Pair((height - 70) * 0.6, 1.39 * bmi + 0.16 * age - 9)
             }
-            // 切換到 Main Thread 更新畫面
-            runOnUiThread {
-                llProgress.visibility = View.GONE
-                tvWeightResult.text = "標準體重 \n${String.format("%.2f", standWeight)}"
-                tvFatResult.text = "體脂肪 \n${String.format("%.2f", bodyFat)}"
-                tvBmiResult.text = "BMI \n${String.format("%.2f", bmi)}"
-            }
-        }.start()
+
+            llProgress.visibility = View.GONE
+            tvWeightResult.text = "標準體重 \n${String.format("%.2f", standWeight)}"
+            tvFatResult.text = "體脂肪 \n${String.format("%.2f", bodyFat)}"
+            tvBmiResult.text = "BMI \n${String.format("%.2f", bmi)}"
+            btnCalculate.isEnabled = true
+        }
     }
 }
